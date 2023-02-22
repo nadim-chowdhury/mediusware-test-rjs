@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 const Problem2 = () => {
   const [contacts, setContacts] = useState([]);
 
-  let contact = contacts.results;
-
   let API = "https://contact.mediusware.com/api/contacts/?page=1";
 
   const fetchApiData = async (url) => {
@@ -21,6 +19,8 @@ const Problem2 = () => {
   useEffect(() => {
     fetchApiData(API);
   }, []);
+
+  let contact = contacts.results;
 
   return (
     <div className="container">
@@ -39,7 +39,11 @@ const Problem2 = () => {
 
       <div id="contacts">
         {contact.map((ev) => {
-          return <h1>{ev.phone}</h1>;
+          return (
+            <div key={Math.random()}>
+              <h5>{ev.phone}</h5>
+            </div>
+          );
         })}
       </div>
     </div>
